@@ -27,13 +27,14 @@
 	    <groupId>com.amazonaws</groupId>
 	    <artifactId>aws-java-sdk</artifactId>
 	    <version>1.11.490</version>
-	</dependency>
-	
-	
+    </dependency>
 
-    
- 
-    
-    
+      <!-- https://github.com/sarxos/webcam-capture -->
+    <dependency>
+        <groupId>com.github.sarxos</groupId>
+        <artifactId>webcam-capture</artifactId>
+        <version>0.3.12</version>
+    </dependency>
+
   </dependencies>
 </project>
