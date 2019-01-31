@@ -13,14 +13,14 @@ public class ConnectBDD {
 
             /* Chargement du driver JDBC pour MySQL */
             try {
-                Class.forName( "com.mysql.jdbc.Driver" );
+                Class.forName( "com.mysql.cj.jdbc.Driver" );
             } catch ( ClassNotFoundException e ) {
                 System.out.println("Erreur Driver");
             }
             System.out.println("Driver O.K.");
 
             /* Connexion à la base de données */
-            String url = "jdbc:mysql://localhost:3306/securiface";
+            String url = "jdbc:mysql://127.0.0.1:3306/securiface";
             String utilisateur = "securiface";
             String motDePasse = "Freesteak44";
             Connection connexion = null;
@@ -31,10 +31,11 @@ public class ConnectBDD {
                 Statement statement = connexion.createStatement();
 
                 /* Exécution d'une requête de lecture */
-                ResultSet resultat = statement.executeQuery( "SELECT id, nom, prenom  FROM Agents;" );
+                ResultSet resultat = statement.executeQuery( "SELECT matricule, nom, prenom FROM agents;" );
+                System.out.println(resultat);
 
             } catch ( SQLException e ) {
-                /* Gestion des éventuelles erreurs ici */
+                System.out.println("Erreur de connexion à la BDD MySQL");
             } finally {
                 if ( connexion != null )
                     try {
