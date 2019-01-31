@@ -22,7 +22,7 @@ import java.util.List;
 
 public class CompareFaces {
 
-    public static void main(String[] args) throws Exception{
+   /*public static void main(String[] args) throws Exception{
         AWSCredentials credentials;
         try {
             credentials = new ProfileCredentialsProvider().getCredentials();
@@ -93,5 +93,5 @@ public class CompareFaces {
             imageBytes = ByteBuffer.wrap(IOUtils.toByteArray(inputStream));
         }
         return new Image().withBytes(imageBytes);
-    }
+    }*/
 }
