@@ -8,7 +8,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        ConnectBDD.ConnectToBDD();
+        Agents.getListAgents();
+
         ConnectFrame connectFrame = new ConnectFrame();
     }
 }
