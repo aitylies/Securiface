@@ -33,7 +33,17 @@ public class ConnectBDD {
 
                 /* Exécution d'une requête de lecture */
                 ResultSet resultat = statement.executeQuery( "SELECT matricule, nom, prenom FROM agent;" );
-                System.out.println(resultat);
+
+                /* Récupération des données du résultat de la requête de lecture */
+                while ( resultat.next() ) {
+                    String nomAgent = resultat.getString( "nom" );
+                    String prenomAgent = resultat.getString( "prenom" );
+                    String matriculeAgent = resultat.getString( "matricule" );
+
+                    /* Traiter ici les valeurs récupérées. */
+
+                    System.out.println("Agent : "+prenomAgent+" "+nomAgent+" , matricule : "+matriculeAgent);
+                }
 
             } catch ( SQLException e ) {
                 e.printStackTrace();
