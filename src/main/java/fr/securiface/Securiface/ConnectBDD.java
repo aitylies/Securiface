@@ -1,8 +1,7 @@
 package fr.securiface.Securiface;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 /**
  * Classe permettant la connexion à la base de donnée
@@ -10,24 +9,41 @@ import java.sql.DriverManager;
  */
 public class ConnectBDD {
 
-    public static void ConnectToBDD(String url, String user, String passwd) {
-        try {
-            Class.forName("org.postgresql.Driver");
+    public static void ConnectToBDD() {
+
+            /* Chargement du driver JDBC pour MySQL */
+            try {
+                Class.forName( "com.mysql.cj.jdbc.Driver" );
+            } catch ( ClassNotFoundException e ) {
+                System.out.println("Erreur Driver");
+            }
             System.out.println("Driver O.K.");
 
-            /*String url = "jdbc:postgresql://localhost:5432/Ecole";
-            String user = "postgres";
-            String passwd = "postgres";
-            */
-            Connection conn = DriverManager.getConnection(url, user, passwd);
-            System.out.println("Connexion effective !");
+            /* Connexion à la base de données */
+            String url = "jdbc:mysql://127.0.0.1:3306/securiface";
+            String utilisateur = "securiface";
+            String motDePasse = "Freesteak44";
+            Connection connexion = null;
+            try {
+                connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+                /* Création de l'objet gérant les requêtes */
+                Statement statement = connexion.createStatement();
 
-    public static void ListItems(){
+                /* Exécution d'une requête de lecture */
+                ResultSet resultat = statement.executeQuery( "SELECT matricule, nom, prenom FROM agents;" );
+                System.out.println(resultat);
 
+            } catch ( SQLException e ) {
+                System.out.println("Erreur de connexion à la BDD MySQL");
+            } finally {
+                if ( connexion != null )
+                    try {
+                        /* Fermeture de la connexion */
+                        connexion.close();
+                    } catch ( SQLException ignore ) {
+                        /* Si une erreur survient lors de la fermeture, il suffit de l'ignorer. */
+                    }
+            }
     }
 }

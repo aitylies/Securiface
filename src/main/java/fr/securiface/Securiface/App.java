@@ -8,6 +8,7 @@ public class App
 {
     public static void main( String[] args )
     {
+        ConnectBDD.ConnectToBDD();
         ConnectFrame connectFrame = new ConnectFrame();
     }
 }
