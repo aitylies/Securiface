@@ -16,13 +16,14 @@ public class Agents {
             Statement statement = connection.createStatement();
 
             /* Exécution d'une requête de lecture */
-            ResultSet resultat = statement.executeQuery( "SELECT matricule, nom, prenom FROM agent;" );
+            ResultSet resultat = statement.executeQuery( "SELECT matricule, nom, prenom FROM agents;" );
 
             /* Récupération des données du résultat de la requête de lecture */
             while ( resultat.next() ) {
                 String nomAgent = resultat.getString( "nom" );
                 String prenomAgent = resultat.getString( "prenom" );
                 String matriculeAgent = resultat.getString( "matricule" );
+                //String naissanceAgent = resultat.getString("naissance");
                 /* Traiter ici les valeurs récupérées. */
 
                 System.out.println("Agent : "+prenomAgent+" "+nomAgent+" , matricule : "+matriculeAgent);
