@@ -23,9 +23,8 @@ public class Agents {
                 String nomAgent = resultat.getString( "nom" );
                 String prenomAgent = resultat.getString( "prenom" );
                 String matriculeAgent = resultat.getString( "matricule" );
-                //String naissanceAgent = resultat.getString("naissance");
-                /* Traiter ici les valeurs récupérées. */
 
+                /* Traiter ici les valeurs récupérées. */
                 System.out.println("Agent : "+prenomAgent+" "+nomAgent+" , matricule : "+matriculeAgent);
             }
         } catch (SQLException e) {
@@ -33,7 +32,7 @@ public class Agents {
         }
     }
 
-    public static void putAgent(String id, String nom, String prenom, String matricule){
+    public static void putAgent(String nom, String prenom, String matricule){
 
         try {
 
@@ -42,14 +41,13 @@ public class Agents {
             /* Création de l'objet gérant les requêtes */
             Statement statement = connection.createStatement();
 
-            String INSERT_QUERY = "INSERT INTO agent (id, nom, prenom, matricule) VALUES (?,?,?,?)";
+            String INSERT_QUERY = "INSERT INTO agents (nom, prenom, matricule) VALUES (?,?,?)";
 
             /* Exécution d'une requête d'écriture */
             PreparedStatement st = connection.prepareStatement( INSERT_QUERY, Statement.RETURN_GENERATED_KEYS );
-            st.setString( 1, id);
-            st.setString( 2, nom );
-            st.setString( 3, prenom );
-            st.setString( 4, matricule );
+            st.setString( 1, nom );
+            st.setString( 2, prenom );
+            st.setString( 3, matricule );
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
 
@@ -59,7 +57,7 @@ public class Agents {
 
     }
 
-    public static void removeAgent(){
+    public static void removeAgent(String agentName){
 
         try {
 
@@ -68,7 +66,7 @@ public class Agents {
             /* Création de l'objet gérant les requêtes */
             Statement statement = connection.createStatement();
 
-            String DELETE_QUERY = "DELETE FROM agent WHERE id = 2";
+            String DELETE_QUERY = "DELETE FROM agents WHERE nom = '"+agentName+"'";
 
             /* Exécution d'une requête de suppression */
             PreparedStatement st = connection.prepareStatement( DELETE_QUERY, Statement.RETURN_GENERATED_KEYS );
