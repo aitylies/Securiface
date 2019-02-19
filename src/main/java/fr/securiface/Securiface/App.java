@@ -1,12 +1,9 @@
 package fr.securiface.Securiface;
 
-import sun.misc.resources.Messages_zh_CN;
-
-import java.sql.Date;
-import java.time.Instant;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Hello world!
@@ -17,19 +14,35 @@ public class App
 {
     public static void main( String[] args )
     {
-        Date maintenant = Date.valueOf(LocalDate.now());
-        LocalDate date_ajout = LocalDate.of(2019, Month.JANUARY, 18);
 
-        /*Agents.putAgent("Wick","John","55882");
-        Agents.getListAgents();
-        Agents.removeAgent("Wick");
+        // Identification de l'Agent.
+            /*Return nomAgent
+        // Acces à son inventaire et aux materiel disponible.
+
+
+        // Modification du stock(quantite en fonction du choix de l'agent.
+
+            /*UPDATE Quantite Materiel*/
+            /*INSERT INTO reservation VALUES(nomAgent,nomMateriel)*/
+
+        /*Agents.removeAgent("Bond");
+        Agents.removeAgent("Castle");
+        Agents.putAgent("Bond","James","Gardien","54782","MotdePasseJames","./src/main/photo.jpg");
+        Agents.putAgent("Castle","Franck","Gardien","89654","MotdePasseFranck","./src/main/photo.jpg");
+        Agents.getImageAgent("Castle");
         Agents.getListAgents();*/
 
+        /*Materiel.removeMateriel("Grapin");
+        Materiel.removeMateriel("Gilet Pare-Balle");
+        Materiel.removeMateriel("Tazer");
+        Materiel.putMateriel("Grapin","Grapin de sécurité 45mm");
+        Materiel.putMateriel("Gilet Pare-Balle","Gilet Pare-Balle en Kevlar");
+        Materiel.putMateriel("Tazer","Pistolet Tazer 58W");
+        Materiel.setQteMateriel("Grapin",6);
+        Materiel.setQteMateriel("Gilet Pare-Balle",6);
+        Materiel.setQteMateriel("Tazer",6);*/
 
-        /*Materiel.putMateriel("Grapin",date_ajout,maintenant,"Grapin de sécurité 45mm");
-        Materiel.getListMateriel();
-        Materiel.removeMateriel("Grapin");
-        Materiel.getListMateriel();*/
+        //Materiel.getListMateriel();
 
         ConnectFrame connectFrame = new ConnectFrame();
     }
