@@ -105,4 +105,47 @@ public class Agents {
         }
         return pathfile;
     }
+
+    public static boolean isExisting (String agentName){
+
+        Boolean verif = false;
+        try {
+            Connection connection = ConnectBDD.getConnection();
+            /* Création de l'objet gérant les requêtes */
+            Statement statement = connection.createStatement();
+
+            /* Exécution d'une requête de lecture */
+            ResultSet resultat = statement.executeQuery( "SELECT nom FROM agents WHERE nom = '"+agentName+"';" );
+
+            if (resultat.next()) {
+                /* Traiter ici les valeurs récupérées. */
+                verif = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return verif;
+    }
+
+    public static boolean reservation (String agentName, String materielName){
+
+        Boolean verif = false;
+        try {
+
+            Connection connection = ConnectBDD.getConnection();
+            /* Création de l'objet gérant les requêtes */
+            Statement statement = connection.createStatement();
+
+            /* Exécution d'une requête de lecture */
+            ResultSet resultat = statement.executeQuery( "SELECT nomAgent, nomMateriel FROM reservation WHERE nomAgent = '"+agentName+"' AND nomMateriel = '"+materielName+"';" );
+
+            if (resultat.next()) {
+                /* Traiter ici les valeurs récupérées. */
+                verif = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return verif;
+    }
 }

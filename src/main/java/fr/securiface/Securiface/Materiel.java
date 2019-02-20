@@ -145,4 +145,26 @@ public class Materiel {
             e.printStackTrace();
         }
     }
+
+    // RETOURNE SI UN MATERIEL DONNE EST EPUISE
+    public static boolean isEmpty(String nomMateriel){
+
+        boolean verif = false;
+        try {
+
+            Connection connection = ConnectBDD.getConnection();
+
+            /* Création de l'objet gérant les requêtes */
+            Statement statement = connection.createStatement();
+
+            Integer quantite = getQteMateriel(nomMateriel);
+            if (quantite == 0){
+                verif = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return verif;
+    }
 }
