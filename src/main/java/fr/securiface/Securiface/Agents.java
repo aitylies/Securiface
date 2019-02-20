@@ -63,7 +63,7 @@ public class Agents {
 
     }
 
-    public static void removeAgent(String agentName){
+    public static void removeAgent(Integer agentMatricule){
 
         try {
 
@@ -72,7 +72,7 @@ public class Agents {
             /* Création de l'objet gérant les requêtes */
             Statement statement = connection.createStatement();
 
-            String DELETE_QUERY = "DELETE FROM agents WHERE nom = '"+agentName+"'";
+            String DELETE_QUERY = "DELETE FROM agents WHERE matricule = '"+agentMatricule+"'";
 
             /* Exécution d'une requête de suppression */
             PreparedStatement st = connection.prepareStatement( DELETE_QUERY, Statement.RETURN_GENERATED_KEYS );
@@ -84,7 +84,7 @@ public class Agents {
         }
     }
 
-    public static String getImageAgent(String agentName){
+    public static String getImageAgent(Integer agentMatricule){
 
         String pathfile="";
         try {
@@ -94,7 +94,7 @@ public class Agents {
             Statement statement = connection.createStatement();
 
             /* Exécution d'une requête de lecture */
-            ResultSet resultat = statement.executeQuery( "SELECT chemin_photo FROM agents WHERE nom = '"+agentName+"';" );
+            ResultSet resultat = statement.executeQuery( "SELECT chemin_photo FROM agents WHERE matricule = '"+agentMatricule+"';" );
 
             if (resultat.next()) {
                 /* Traiter ici les valeurs récupérées. */
@@ -106,7 +106,29 @@ public class Agents {
         return pathfile;
     }
 
-    public static boolean isExisting (String agentName){
+    public static String getNomAgent(Integer agentMatricule){
+
+        String name="";
+        try {
+
+            Connection connection = ConnectBDD.getConnection();
+            /* Création de l'objet gérant les requêtes */
+            Statement statement = connection.createStatement();
+
+            /* Exécution d'une requête de lecture */
+            ResultSet resultat = statement.executeQuery( "SELECT nom FROM agents WHERE matricule = '"+agentMatricule+"';" );
+
+            if (resultat.next()) {
+                /* Traiter ici les valeurs récupérées. */
+                name = resultat.getString("nom");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
+    public static boolean isExisting (Integer agentMatricule){
 
         Boolean verif = false;
         try {
@@ -115,7 +137,7 @@ public class Agents {
             Statement statement = connection.createStatement();
 
             /* Exécution d'une requête de lecture */
-            ResultSet resultat = statement.executeQuery( "SELECT nom FROM agents WHERE nom = '"+agentName+"';" );
+            ResultSet resultat = statement.executeQuery( "SELECT nom FROM agents WHERE matricule = '"+agentMatricule+"';" );
 
             if (resultat.next()) {
                 /* Traiter ici les valeurs récupérées. */
@@ -127,14 +149,17 @@ public class Agents {
         return verif;
     }
 
-    public static boolean reservation (String agentName, String materielName){
+    public static boolean reservation (Integer agentMatricule, String materielName){
 
         Boolean verif = false;
         try {
 
+
             Connection connection = ConnectBDD.getConnection();
             /* Création de l'objet gérant les requêtes */
             Statement statement = connection.createStatement();
+
+            String agentName = getNomAgent(agentMatricule);
 
             /* Exécution d'une requête de lecture */
             ResultSet resultat = statement.executeQuery( "SELECT nomAgent, nomMateriel FROM reservation WHERE nomAgent = '"+agentName+"' AND nomMateriel = '"+materielName+"';" );
