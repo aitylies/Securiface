@@ -2,12 +2,24 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>fr.projetTest3</groupId>
-  <artifactId>projetTest3</artifactId>
+  <groupId>fr.Securiface</groupId>
+  <artifactId>Securiface</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <packaging>jar</packaging>
 
-  <name>projetTest3</name>
+  <name>Securiface</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -21,5 +33,39 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+	<dependency>
+	    <groupId>com.amazonaws</groupId>
+	    <artifactId>aws-java-sdk</artifactId>
+	    <version>1.11.490</version>
+    </dependency>
+
+    <!-- https://github.com/sarxos/webcam-capture -->
+    <!-- OLD WEBCAM DEPENDENCY -->
+    <!--
+    <dependency>
+        <groupId>com.github.sarxos</groupId>
+        <artifactId>webcam-capture</artifactId>
+        <version>0.3.12</version>
+    </dependency>
+    -->
+
+    <!-- https://mvnrepository.com/artifact/org.openpnp/opencv -->
+    <dependency>
+      <groupId>org.openpnp</groupId>
+      <artifactId>opencv</artifactId>
+      <version>3.4.2-0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.14</version>
+    </dependency>
+
+
   </dependencies>
+
 </project>
