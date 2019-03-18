@@ -1,4 +1,4 @@
-package fr.projetTest3.projetTest3;
+package fr.securiface.Securiface;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
